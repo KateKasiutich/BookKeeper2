@@ -1,0 +1,31 @@
+﻿@using PresentationLayer.Models;
+@using DBLayer.Enums;
+@model PageModelView
+
+@if (Model is DirectoryModelView)
+{
+    var _currentModel = (DirectoryModelView)Model;
+    <h1>@_currentModel.Directory.Title</h1>
+    <p>@Html.Raw(_currentModel.Directory.Html)</p>
+    <ul>
+        @if (_currentModel.Books != null)
+        {
+            foreach (var subItem in _currentModel.Books)
+            {
+                <li><a asp-action="Index" asp-controller="Page" asp-route-pageId="@subItem.Content.Id" asp-route-pageType="@PageEnums.PageType.Content">@subItem.Content.Title</a></li>
+            }
+        }
+    </ul>
+}
+else if (Model is ContentModelView)
+{
+    var _currentModel = (ContentModelView)Model;
+    <h1>@_currentModel.Content.Title</h1>
+    <p>@Html.Raw(_currentModel.Content.Html)</p>
+    if (_currentModel.NextContent != null)
+    {
+        <ul>
+            <li> <a asp-action="Index" asp-controller="Page" asp-route-pageId="@_currentModel.NextContent.Id" asp-route-pageType="@PageEnums.PageType.Content">@_currentModel.NextContent.Title</a></li>
+        </ul>
+    }
+}

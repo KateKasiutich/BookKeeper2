@@ -1,0 +1,33 @@
+﻿@using PresentationLayer.Models;
+@using DBLayer.Enums;
+@model PageModelEdit
+@if (Model is DirectoryModelEdit)
+{
+    var CurrentModel = (DirectoryModelEdit)Model;
+    <form action="/Page/SaveDirectory" method="post">
+        <input type="hidden" value="@ViewBag.PageType" name="PageType" />
+
+        <h1>Edit Directory</h1>
+        <input name="Id" type="hidden" value="@CurrentModel.Id" />
+        <input name="Title" value="@CurrentModel.Title" />
+        <textarea name="Html">@CurrentModel.Html</textarea>
+
+
+        <input type="submit" />
+    </form>
+}
+else if (Model is ContentModelEdit)
+{
+    var CurrentModel = (ContentModelEdit)Model;
+    <form action="/Page/SaveMaterial" method="post">
+        <input type="hidden" value="@ViewBag.PageType" name="PageType" />
+
+        <h1>Edit Book</h1>
+
+        <input name="Id" type="hidden" value="@CurrentModel.Id" />
+        <input name="Directoryid" value="@CurrentModel.DirectoryId" />
+        <input name="Title" value="@CurrentModel.Title" />
+        <textarea name="Html">@CurrentModel.Html</textarea>
+        <input type="submit" />
+    </form>
+}

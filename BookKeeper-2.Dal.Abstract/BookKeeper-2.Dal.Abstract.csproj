@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>BookKeeper_2.Dal.Abstract</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookKeeper-2.Entity\BookKeeper-2.Entity.csproj" />
+  </ItemGroup>
+
+</Project>
